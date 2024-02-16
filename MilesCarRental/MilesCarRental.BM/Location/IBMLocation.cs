@@ -12,7 +12,7 @@ namespace MilesCarRental.BM.Location
     {
         LocationDTO GetLocation();
 
-        IEnumerable<LocationDTO> GetAllLocations();
+        MarketResultDTO<IEnumerable<LocationDTO>> GetAllLocations();
 
         MarketResultDTO<MarketDTO> SetLocation(MarketDTO marketDTO);
     }

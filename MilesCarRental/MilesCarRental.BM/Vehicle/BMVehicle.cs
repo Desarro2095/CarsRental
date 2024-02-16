@@ -1,4 +1,5 @@
 ﻿using MilesCarRental.DA.Vehicle;
+using MilesCarRental.DT.Location;
 using MilesCarRental.DT.Market;
 using MilesCarRental.DT.Vehicle;
 using MilesCarRental.SP.Messages;
@@ -19,9 +20,22 @@ namespace MilesCarRental.BM.Vehicle
             this.dAVehicle = dAVehicle;
         }
 
-        public IEnumerable<VehicleDTO> GetAllVehicles(string location)
+        public MarketResultDTO<IEnumerable<VehicleDTO>> GetAllVehicles(string location)
         {
-            return this.dAVehicle.GetAllVehicles(location);
+            MarketResultDTO<IEnumerable<VehicleDTO>> marketResultDTO = new MarketResultDTO<IEnumerable<VehicleDTO>>();
+            IEnumerable<VehicleDTO> result = this.dAVehicle.GetAllVehicles(location);
+            if (result != null && result.Count() > 0)
+            {
+                marketResultDTO.Result = true;
+                marketResultDTO.Messagge = Messages.GetQuerySuccessful;
+                marketResultDTO.Value = result;
+            }
+            else
+            {
+                marketResultDTO.Result = false;
+                marketResultDTO.Messagge = Messages.GetNoQueryReturn;
+            }
+            return marketResultDTO;
         }
 
         public MarketResultDTO<VehicleDTO> GetVehicle(string location, string brand)

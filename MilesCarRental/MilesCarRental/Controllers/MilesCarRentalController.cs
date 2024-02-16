@@ -5,6 +5,7 @@ using MilesCarRental.BM.Vehicle;
 using MilesCarRental.DT.Location;
 using MilesCarRental.DT.Market;
 using MilesCarRental.DT.Vehicle;
+using MilesCarRental.SP.Validations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -29,12 +30,14 @@ namespace MilesCarRental.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetAllLocations")]
-        public ActionResult<IEnumerable<LocationDTO>> GetAllLocations()
+        public ActionResult<MarketResultDTO<IEnumerable<LocationDTO>>> GetAllLocations()
         {
             try
             {
-                IEnumerable<LocationDTO> result = this.bMLocation.GetAllLocations();
-                return StatusCode(((int)HttpStatusCode.OK), result);
+                HttpStatusCode status = HttpStatusCode.OK;
+                MarketResultDTO<IEnumerable<LocationDTO>> result = this.bMLocation.GetAllLocations();
+                status = ValidatorStatusCode.GetStatusCode(result);
+                return StatusCode((int)status, result);
             }
             catch (Exception ex)
             {
@@ -48,12 +51,14 @@ namespace MilesCarRental.Controllers
         /// <param name="locationDTO"></param>
         /// <returns></returns>
         [HttpPost("GetAllVehicles")]
-        public ActionResult<IEnumerable<VehicleDTO>> GetAllVehicles([FromBody] LocationDTO locationDTO)
+        public ActionResult<IEnumerable<VehicleDTO>> GetAllVehicles(string location)
         {
             try
             {
-                IEnumerable<VehicleDTO> result = this.bMVehicle.GetAllVehicles(locationDTO.LocationName);
-                return StatusCode(((int)HttpStatusCode.OK), result);
+                HttpStatusCode status = HttpStatusCode.OK;
+                MarketResultDTO<IEnumerable<VehicleDTO>> result = this.bMVehicle.GetAllVehicles(location);
+                status = ValidatorStatusCode.GetStatusCode(result);
+                return StatusCode((int)status, result);
             }
             catch (Exception ex)
             {
@@ -67,12 +72,14 @@ namespace MilesCarRental.Controllers
         /// <param name="marketDTO"></param>
         /// <returns></returns>
         [HttpPost("GetVehicle")]
-        public ActionResult<MarketResultDTO<VehicleDTO>> GetVehicle([FromBody] MarketDTO marketDTO)
+        public ActionResult<MarketResultDTO<VehicleDTO>> GetVehicle(string location, string brand)
         {
             try
             {
-                MarketResultDTO<VehicleDTO> result = this.bMVehicle.GetVehicle(marketDTO.LocationBegin.LocationName, marketDTO.Vehicle.Brand);
-                return StatusCode(((int)HttpStatusCode.OK), result);
+                HttpStatusCode status = HttpStatusCode.OK;
+                MarketResultDTO<VehicleDTO> result = this.bMVehicle.GetVehicle(location, brand);
+                status = ValidatorStatusCode.GetStatusCode(result);
+                return StatusCode((int)status, result);
             }
             catch (Exception ex)
             {
@@ -91,8 +98,10 @@ namespace MilesCarRental.Controllers
         {
             try
             {
+                HttpStatusCode status = HttpStatusCode.OK;
                 MarketResultDTO<MarketDTO> result = this.bMLocation.SetLocation(marketDTO);
-                return StatusCode(((int)HttpStatusCode.OK), result);
+                status = ValidatorStatusCode.GetStatusCode(result);
+                return StatusCode((int)status, result);
             }
             catch (Exception ex)
             {

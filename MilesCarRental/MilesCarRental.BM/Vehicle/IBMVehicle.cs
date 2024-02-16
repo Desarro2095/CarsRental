@@ -10,7 +10,7 @@ namespace MilesCarRental.BM.Vehicle
 {
     public interface IBMVehicle
     {
-        IEnumerable<VehicleDTO> GetAllVehicles(string location);
+        MarketResultDTO<IEnumerable<VehicleDTO>> GetAllVehicles(string location);
         MarketResultDTO<VehicleDTO> GetVehicle(string location, string brand);
     }
 }
