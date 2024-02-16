@@ -1,0 +1,12 @@
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\bin\Debug\net6.0\MilesCarRental.SP.deps.json
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\bin\Debug\net6.0\MilesCarRental.SP.dll
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\bin\Debug\net6.0\MilesCarRental.SP.pdb
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\obj\Debug\net6.0\MilesCarRental.SP.csproj.AssemblyReference.cache
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\obj\Debug\net6.0\MilesCarRental.SP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\obj\Debug\net6.0\MilesCarRental.SP.AssemblyInfoInputs.cache
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\obj\Debug\net6.0\MilesCarRental.SP.AssemblyInfo.cs
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\obj\Debug\net6.0\MilesCarRental.SP.csproj.CoreCompileInputs.cache
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\obj\Debug\net6.0\MilesCarRental.SP.dll
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\obj\Debug\net6.0\refint\MilesCarRental.SP.dll
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\obj\Debug\net6.0\MilesCarRental.SP.pdb
+C:\Users\carlo\source\repos\MilesCarRental\MilesCarRental.SP\obj\Debug\net6.0\ref\MilesCarRental.SP.dll

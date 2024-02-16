@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MilesCarRental.DA\MilesCarRental.DA.csproj" />
+    <ProjectReference Include="..\MilesCarRental.DT\MilesCarRental.DT.csproj" />
+    <ProjectReference Include="..\MilesCarRental.SP\MilesCarRental.SP.csproj" />
+  </ItemGroup>
+
+</Project>

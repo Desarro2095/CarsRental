@@ -1,0 +1,61 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MilesCarRental.BM/1.0.0": {
+        "dependencies": {
+          "MilesCarRental.DA": "1.0.0",
+          "MilesCarRental.DT": "1.0.0",
+          "MilesCarRental.SP": "1.0.0"
+        },
+        "runtime": {
+          "MilesCarRental.BM.dll": {}
+        }
+      },
+      "MilesCarRental.DA/1.0.0": {
+        "dependencies": {
+          "MilesCarRental.DT": "1.0.0"
+        },
+        "runtime": {
+          "MilesCarRental.DA.dll": {}
+        }
+      },
+      "MilesCarRental.DT/1.0.0": {
+        "runtime": {
+          "MilesCarRental.DT.dll": {}
+        }
+      },
+      "MilesCarRental.SP/1.0.0": {
+        "runtime": {
+          "MilesCarRental.SP.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MilesCarRental.BM/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MilesCarRental.DA/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MilesCarRental.DT/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MilesCarRental.SP/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

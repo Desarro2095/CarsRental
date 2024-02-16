@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MilesCarRental.DA/1.0.0": {
+        "dependencies": {
+          "MilesCarRental.DT": "1.0.0"
+        },
+        "runtime": {
+          "MilesCarRental.DA.dll": {}
+        }
+      },
+      "MilesCarRental.DT/1.0.0": {
+        "runtime": {
+          "MilesCarRental.DT.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MilesCarRental.DA/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MilesCarRental.DT/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
