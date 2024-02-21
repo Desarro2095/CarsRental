@@ -15,11 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{0BA7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilesCarRental.SP", "MilesCarRental.SP\MilesCarRental.SP.csproj", "{EB239F55-11AB-4B10-A58A-FC12A7B929FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilesCarRental.DT", "MilesCarRental.DT\MilesCarRental.DT.csproj", "{4F22F9AB-5BFF-4CF2-89AE-5420ED488828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilesCarRental.DT", "MilesCarRental.DT\MilesCarRental.DT.csproj", "{4F22F9AB-5BFF-4CF2-89AE-5420ED488828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilesCarRental.BM", "MilesCarRental.BM\MilesCarRental.BM.csproj", "{D5CAD479-19D3-4A59-9E22-24EEE5F489DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilesCarRental.BM", "MilesCarRental.BM\MilesCarRental.BM.csproj", "{D5CAD479-19D3-4A59-9E22-24EEE5F489DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilesCarRental.DA", "MilesCarRental.DA\MilesCarRental.DA.csproj", "{A44317D8-0ACD-435E-8D3E-ADF013979A83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilesCarRental.DA", "MilesCarRental.DA\MilesCarRental.DA.csproj", "{A44317D8-0ACD-435E-8D3E-ADF013979A83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

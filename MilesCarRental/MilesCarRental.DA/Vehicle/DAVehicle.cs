@@ -1,4 +1,8 @@
-﻿using MilesCarRental.DT.Vehicle;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
+using MilesCarRental.DT.Location;
+using MilesCarRental.DT.Vehicle;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,85 +13,55 @@ namespace MilesCarRental.DA.Vehicle
 {
     public class DAVehicle : IDAVehicle
     {
+        private readonly string connectionString;
+        private readonly IConfiguration configuration;
+        public DAVehicle(IConfiguration configuration) 
+        {
+            this.configuration = configuration;
+            this.connectionString = GetConnectionString();
+        }
+
         public IEnumerable<VehicleDTO> GetAllVehicles(string location)
         {
-            return GetData(location);
+            IEnumerable<VehicleDTO> vehicles = new List<VehicleDTO>();
+            using (var connection = new MySqlConnection(this.connectionString))
+            {
+                IEnumerable<dynamic> result = connection.Query(Resources.Resource.GetAllVehicles);
+                if (result != null && result.Count() > 0)
+                {
+                    vehicles = result.Select(x => new VehicleDTO()
+                    {
+                        Brand = x.Vehicle,
+                        Description = x.VehicleDescription,
+                        AmountAvaible = x.AmountAvaible
+                    });
+                }
+            }
+            return vehicles;
         }
 
         public VehicleDTO GetVehicle(string location, string brand)
         {
-            var result = GetData(location).Where(x=> x.Brand == brand && x.AmountAvaible > 0).FirstOrDefault();
-            return result == null ? new VehicleDTO() : result;
+            VehicleDTO vehicleDTO = new VehicleDTO();
+            using (var connection = new MySqlConnection(this.connectionString))
+            {
+                dynamic result = connection.QuerySingle(string.Format(Resources.Resource.GetVehicle, brand, location));
+                if (result != null)
+                {
+                    vehicleDTO = new VehicleDTO
+                    {
+                        Brand = result.Vehicle,
+                        Description = result.VehicleDescription,
+                        AmountAvaible = result.AmountAvaible
+                    };
+                }
+            }
+            return vehicleDTO;
         }
 
-        private IEnumerable<VehicleDTO> GetData(string location)
+        private string GetConnectionString()
         {
-            List<VehicleDTO> vehicleDTOs = new List<VehicleDTO>();
-
-            switch (location)
-            {
-                case "Bogota":
-                    vehicleDTOs.Add(new VehicleDTO
-                    {
-                        Brand = "Volvo",
-                        Description = "Truck",
-                        AmountAvaible = 5
-                    });
-                    vehicleDTOs.Add(new VehicleDTO
-                    {
-                        Brand = "Ford",
-                        Description = "Family",
-                        AmountAvaible = 5
-                    });
-                    vehicleDTOs.Add(new VehicleDTO
-                    {
-                        Brand = "Hyundai",
-                        Description = "Compact",
-                        AmountAvaible = 5
-                    });
-                    break;
-                case "Medellin":
-                    vehicleDTOs.Add(new VehicleDTO
-                    {
-                        Brand = "BMW",
-                        Description = "Classic",
-                        AmountAvaible = 5
-                    });
-                    vehicleDTOs.Add(new VehicleDTO
-                    {
-                        Brand = "KIA",
-                        Description = "Sport",
-                        AmountAvaible = 5
-                    });
-                    vehicleDTOs.Add(new VehicleDTO
-                    {
-                        Brand = "Nissan",
-                        Description = "Future",
-                        AmountAvaible = 5
-                    });
-                    break;
-                case "Cartagena":
-                    vehicleDTOs.Add(new VehicleDTO
-                    {
-                        Brand = "Renault",
-                        Description = "Hybrid",
-                        AmountAvaible = 5
-                    });
-                    vehicleDTOs.Add(new VehicleDTO
-                    {
-                        Brand = "Mazda",
-                        Description = "Large",
-                        AmountAvaible = 5
-                    });
-                    vehicleDTOs.Add(new VehicleDTO
-                    {
-                        Brand = "Suzuki",
-                        Description = "Small",
-                        AmountAvaible = 5
-                    });
-                    break;
-            }
-            return vehicleDTOs;
+            return this.configuration.GetConnectionString("MilesCarRental");
         }
     }
 }
