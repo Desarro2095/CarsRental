@@ -70,7 +70,8 @@ namespace MilesCarRental.DA.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a SELECT * FROM Vehicle.
+        ///   Busca una cadena traducida similar a SELECT * FROM Vehicle V
+        ///INNER JOIN Location L ON L.LocationId = V.LocationId AND L.Location = &apos;{0}&apos;.
         /// </summary>
         internal static string GetAllVehicles {
             get {
@@ -95,6 +96,16 @@ namespace MilesCarRental.DA.Resources {
         internal static string GetVehicle {
             get {
                 return ResourceManager.GetString("GetVehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INSERT INTO Market(LocationBeginId, LocationEndId)
+        ///SELECT (SELECT LocationId FROM Location WHERE Location = &apos;{0}&apos;), (SELECT LocationId FROM Location WHERE Location = &apos;{1}&apos;).
+        /// </summary>
+        internal static string SetLocation {
+            get {
+                return ResourceManager.GetString("SetLocation", resourceCulture);
             }
         }
     }

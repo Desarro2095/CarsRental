@@ -122,7 +122,8 @@
     <comment>Consulta todas las locaciones</comment>
   </data>
   <data name="GetAllVehicles" xml:space="preserve">
-    <value>SELECT * FROM Vehicle</value>
+    <value>SELECT * FROM Vehicle V
+INNER JOIN Location L ON L.LocationId = V.LocationId AND L.Location = '{0}'</value>
     <comment>Consulta todos los vehiculos</comment>
   </data>
   <data name="GetLocation" xml:space="preserve">
@@ -134,5 +135,10 @@
 INNER JOIN Location L ON L.LocationId = V.LocationId
 WHERE V.Vehicle = '{0}' AND Location = '{1}'</value>
     <comment>Consulta un vehiculo en especifico por nombre del vehiculo y ciudad</comment>
+  </data>
+  <data name="SetLocation" xml:space="preserve">
+    <value>INSERT INTO Market(LocationBeginId, LocationEndId)
+SELECT (SELECT LocationId FROM Location WHERE Location = '{0}'), (SELECT LocationId FROM Location WHERE Location = '{1}')</value>
+    <comment>Inserta la localización de inicio y fin seleccionada</comment>
   </data>
 </root>

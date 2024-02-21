@@ -19,6 +19,10 @@ namespace MilesCarRental.BM.Location
             this.dALocation = dALocation;
         }
 
+        /// <summary>
+        /// Consulta todos las locaciones que se tienen registrados
+        /// </summary>
+        /// <returns></returns>
         public MarketResultDTO<IEnumerable<LocationDTO>> GetAllLocations()
         {
             MarketResultDTO<IEnumerable<LocationDTO>> marketResultDTO = new MarketResultDTO<IEnumerable<LocationDTO>>();
@@ -37,6 +41,11 @@ namespace MilesCarRental.BM.Location
             return marketResultDTO;
         }
 
+        /// <summary>
+        /// Realiza la validaciones de las localizaciones seleccionadas
+        /// </summary>
+        /// <param name="marketDTO"></param>
+        /// <returns></returns>
         public MarketResultDTO<MarketDTO> SetLocation(MarketDTO marketDTO)
         {
             MarketResultDTO<MarketDTO> marketResultDTO = new MarketResultDTO<MarketDTO>();
@@ -48,16 +57,15 @@ namespace MilesCarRental.BM.Location
             }
             else
             {
-                marketResultDTO.Result = true;
-                marketResultDTO.Messagge = Messages.GetLocationSuccessfull;
-                marketResultDTO.Value = marketDTO;
+                if (this.dALocation.SetLocation(marketDTO))
+                {
+                    marketResultDTO.Result = true;
+                    marketResultDTO.Messagge = Messages.GetLocationSuccessfull;
+                    marketResultDTO.Value = marketDTO;
+                }
             }
             return marketResultDTO;
         }
 
-        public LocationDTO GetLocation()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

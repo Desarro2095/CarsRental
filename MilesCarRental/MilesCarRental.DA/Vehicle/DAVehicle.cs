@@ -21,12 +21,17 @@ namespace MilesCarRental.DA.Vehicle
             this.connectionString = GetConnectionString();
         }
 
+        /// <summary>
+        /// Consulta todos los vehiculos, segun la locación
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
         public IEnumerable<VehicleDTO> GetAllVehicles(string location)
         {
             IEnumerable<VehicleDTO> vehicles = new List<VehicleDTO>();
             using (var connection = new MySqlConnection(this.connectionString))
             {
-                IEnumerable<dynamic> result = connection.Query(Resources.Resource.GetAllVehicles);
+                IEnumerable<dynamic> result = connection.Query(string.Format(Resources.Resource.GetAllVehicles, location));
                 if (result != null && result.Count() > 0)
                 {
                     vehicles = result.Select(x => new VehicleDTO()
@@ -40,6 +45,12 @@ namespace MilesCarRental.DA.Vehicle
             return vehicles;
         }
 
+        /// <summary>
+        /// Consulta si el vehiculo seleccionado tiene existencia segun la locacion
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="brand"></param>
+        /// <returns></returns>
         public VehicleDTO GetVehicle(string location, string brand)
         {
             VehicleDTO vehicleDTO = new VehicleDTO();
@@ -59,6 +70,10 @@ namespace MilesCarRental.DA.Vehicle
             return vehicleDTO;
         }
 
+        /// <summary>
+        /// Retorna la cadena de conexión a base de datos
+        /// </summary>
+        /// <returns></returns>
         private string GetConnectionString()
         {
             return this.configuration.GetConnectionString("MilesCarRental");

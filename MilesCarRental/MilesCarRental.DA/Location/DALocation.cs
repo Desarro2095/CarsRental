@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using MilesCarRental.DA.Vehicle;
 using MilesCarRental.DT.Location;
+using MilesCarRental.DT.Market;
 using MilesCarRental.DT.Vehicle;
 using MySql.Data.MySqlClient;
 using System;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace MilesCarRental.DA.Location
 {
@@ -24,6 +26,10 @@ namespace MilesCarRental.DA.Location
             this.connectionString = GetConnectionString();
         }
 
+        /// <summary>
+        /// Consulta todos las locaciones que se tienen registrados
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<LocationDTO> GetAllLocations()
         {
             IEnumerable<LocationDTO> locations = new List<LocationDTO>();
@@ -42,6 +48,11 @@ namespace MilesCarRental.DA.Location
             return locations;
         }
 
+        /// <summary>
+        /// Consulta la localización segun el parametro enviado
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
         public LocationDTO GetLocation(string location)
         {
             LocationDTO locationDTO = new LocationDTO();
@@ -60,6 +71,31 @@ namespace MilesCarRental.DA.Location
             return locationDTO;
         }
 
+        /// <summary>
+        /// Realiza la inserción de la localizacion de inicio y fin seleccionada
+        /// </summary>
+        /// <param name="marketDTO"></param>
+        /// <returns></returns>
+        public bool SetLocation(MarketDTO marketDTO)
+        {
+            using (var connection = new MySqlConnection(this.connectionString))
+            {
+                int result = connection.Execute(string.Format(
+                    Resources.Resource.SetLocation, 
+                    marketDTO.LocationBegin.LocationName, 
+                    marketDTO.LocationEnd.LocationName));
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Retorna la cadena de conexión a base de datos
+        /// </summary>
+        /// <returns></returns>
         private string GetConnectionString()
         {
             return this.configuration.GetConnectionString("MilesCarRental");
